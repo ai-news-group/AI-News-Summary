@@ -41,6 +41,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             "news_app.db"
                     ).build();
                 }
+
             }
         }
         return instance;
