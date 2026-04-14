@@ -4,8 +4,9 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import com.example.ai_news_summary.core.model.*;
+import com.example.ai_news_summary.core.model.*;  // ← 改这里
 import com.example.ai_news_summary.data.dao.*;
+import com.example.ai_news_summary.core.model.News;
 
 @Database(
         entities = {
@@ -41,7 +42,6 @@ public abstract class AppDatabase extends RoomDatabase {
                             "news_app.db"
                     ).build();
                 }
-
             }
         }
         return instance;
