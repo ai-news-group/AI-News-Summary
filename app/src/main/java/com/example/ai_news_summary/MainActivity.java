@@ -11,6 +11,8 @@ import com.example.ai_news_summary.adapter.NewsAdapter;
 import com.example.ai_news_summary.core.model.News;  // ← 改这里
 import java.util.ArrayList;
 import java.util.List;
+import android.content.Intent;
+import com.example.ai_news_summary.NewsDetailActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
         newsAdapter = new NewsAdapter(newsList, new NewsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(News news) {
-                Toast.makeText(MainActivity.this, "点击了：" + news.getTitle(), Toast.LENGTH_SHORT).show();
+                // 跳转到详情页
+                Intent intent = new Intent(MainActivity.this, NewsDetailActivity.class);
+                intent.putExtra("news", news);  // 把新闻对象传过去
+                startActivity(intent);
             }
 
             @Override
