@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_not_interested"
+        android:title="不感兴趣" />
+    <item
+        android:id="@+id/action_reduce_same"
+        android:title="减少此类推荐" />
+</menu>

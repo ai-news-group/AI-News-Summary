@@ -29,6 +29,9 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
+    // 👇 我帮你加在这里 👇
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
     // Room数据库
     implementation("androidx.room:room-runtime:2.6.1")
     implementation(libs.activity)
