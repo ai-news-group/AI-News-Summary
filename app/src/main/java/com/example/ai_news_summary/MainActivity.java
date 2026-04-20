@@ -1,23 +1,22 @@
 package com.example.ai_news_summary;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.ai_news_summary.adapter.NewsAdapter;
-import com.example.ai_news_summary.core.model.News;  // ← 改这里
+import com.example.ai_news_summary.core.model.News;
 import java.util.ArrayList;
 import java.util.List;
-import android.content.Intent;
-import com.example.ai_news_summary.NewsDetailActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvNewsList;
-    private EditText etSearch;
     private NewsAdapter newsAdapter;
     private List<News> newsList = new ArrayList<>();
 
@@ -29,8 +28,27 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // 导航图标
+        ImageView ivSearch = findViewById(R.id.iv_search);
+        ImageView ivSource = findViewById(R.id.iv_source);
+        ImageView ivSettings = findViewById(R.id.iv_settings);
+
+        ivSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(intent);
+        });
+
+        ivSource.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SourceListActivity.class);
+            startActivity(intent);
+        });
+
+        ivSettings.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SummarySettingsActivity.class);
+            startActivity(intent);
+        });
+
         rvNewsList = findViewById(R.id.rv_news_list);
-        etSearch = findViewById(R.id.et_search);
 
         rvNewsList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -39,9 +57,8 @@ public class MainActivity extends AppCompatActivity {
         newsAdapter = new NewsAdapter(newsList, new NewsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(News news) {
-                // 跳转到详情页
                 Intent intent = new Intent(MainActivity.this, NewsDetailActivity.class);
-                intent.putExtra("news", news);  // 把新闻对象传过去
+                intent.putExtra("news", news);
                 startActivity(intent);
             }
 
