@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/apk/tools">
 
     <application
         android:name="com.example.ai_news_summary.MyApplication"
@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AINewsSummary">
+
+        <!-- 主页 -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -20,6 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 新闻详情页 -->
+        <activity android:name=".NewsDetailActivity" />
+
+        <!-- 搜索结果页 -->
+        <activity android:name=".SearchActivity" />
+
+        <!-- 新闻来源页 -->
+        <activity android:name=".SourceListActivity" />
+
+        <!-- 摘要设置页 -->
+        <activity android:name=".SummarySettingsActivity" />
+
     </application>
 
 </manifest>
