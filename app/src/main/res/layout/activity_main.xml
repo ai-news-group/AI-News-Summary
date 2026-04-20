@@ -1,31 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:padding="16dp">
 
     <TextView
+        android:id="@+id/login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="AI 新闻摘要系统"
+        android:text="登录天气预报"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#2196F3" />
+        android:textColor="#333"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="数据库框架搭建成功！"
-        android:textSize="16sp" />
+        android:hint="用户名"
+        android:inputType="text"
+        android:layout_below="@id/login_title"
+        android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="7张表已创建：\n用户表\n新闻表\n兴趣表\n阅读历史表\n收藏表\n搜索历史表\n推荐反馈表"
-        android:textSize="14sp"
-        android:gravity="center" />
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:layout_below="@id/username"
+        android:layout_marginBottom="16dp"/>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:layout_below="@id/password"
+        android:backgroundTint="@color/colorPrimary"/>
+
+
+
+</RelativeLayout>

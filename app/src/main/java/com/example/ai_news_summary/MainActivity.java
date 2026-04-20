@@ -1,43 +1,43 @@
 package com.example.ai_news_summary;
 
+
+
 import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import android.graphics.Color;
-import android.view.Gravity;
 
 public class MainActivity extends AppCompatActivity {
+
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private Button loginButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setGravity(Gravity.CENTER);
-        layout.setPadding(32, 32, 32, 32);
+        usernameEditText = findViewById(R.id.username);
+        passwordEditText = findViewById(R.id.password);
+        loginButton = findViewById(R.id.login_button);
 
-        TextView titleText = new TextView(this);
-        titleText.setText("AI 新闻摘要系统");
-        titleText.setTextSize(24);
-        titleText.setTextColor(Color.parseColor("#2196F3"));
-        titleText.setGravity(Gravity.CENTER);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
 
-        TextView successText = new TextView(this);
-        successText.setText("数据库框架搭建成功！");
-        successText.setTextSize(16);
-        successText.setGravity(Gravity.CENTER);
-        successText.setPadding(0, 48, 0, 48);
-
-        TextView tableText = new TextView(this);
-        tableText.setText("已创建的7张表：\n\n用户表\n新闻表\n兴趣表\n阅读历史表\n收藏表\n搜索历史表\n推荐反馈表");
-        tableText.setTextSize(14);
-        tableText.setGravity(Gravity.CENTER);
-
-        layout.addView(titleText);
-        layout.addView(successText);
-        layout.addView(tableText);
-
-        setContentView(layout);
+                // 这里可以添加登录逻辑
+                // 示例: 简单验证
+                if (username.equals("user") && password.equals("pass")) {
+                    Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
