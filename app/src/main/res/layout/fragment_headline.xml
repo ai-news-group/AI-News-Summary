@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- 轮播图区域 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/bannerViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <!-- 轮播图指示器 -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/bannerIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"
+        app:tabBackground="@android:color/transparent"/>
+
+    <!-- 分类标签 -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/categoryTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:tabIndicatorColor="#2196F3"
+        app:tabSelectedTextColor="#2196F3"
+        app:tabTextColor="#757575"
+        app:tabMode="fixed"/>
+
+    <!-- 新闻列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"/>
+
+</LinearLayout>
