@@ -1,43 +1,90 @@
 package com.example.ai_news_summary;
 
 import android.os.Bundle;
-import android.widget.LinearLayout;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import android.graphics.Color;
-import android.view.Gravity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.ai_news_summary.ui.favorite.FavoriteAdapter;
+import com.example.ai_news_summary.ui.favorite.FavoriteViewModel;
+import com.example.ai_news_summary.model.FavoriteItem;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private FavoriteAdapter adapter;
+    private FavoriteViewModel viewModel;
+    private View bottomBar;
+    private TextView tvSelectedCount;
+    private Button btnDelete;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setGravity(Gravity.CENTER);
-        layout.setPadding(32, 32, 32, 32);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("我的收藏");
 
-        TextView titleText = new TextView(this);
-        titleText.setText("AI 新闻摘要系统");
-        titleText.setTextSize(24);
-        titleText.setTextColor(Color.parseColor("#2196F3"));
-        titleText.setGravity(Gravity.CENTER);
+        recyclerView = findViewById(R.id.recyclerView);
+        bottomBar = findViewById(R.id.bottomBar);
+        tvSelectedCount = findViewById(R.id.tvSelectedCount);
+        btnDelete = findViewById(R.id.btnDelete);
 
-        TextView successText = new TextView(this);
-        successText.setText("数据库框架搭建成功！");
-        successText.setTextSize(16);
-        successText.setGravity(Gravity.CENTER);
-        successText.setPadding(0, 48, 0, 48);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new FavoriteAdapter();
+        recyclerView.setAdapter(adapter);
 
-        TextView tableText = new TextView(this);
-        tableText.setText("已创建的7张表：\n\n用户表\n新闻表\n兴趣表\n阅读历史表\n收藏表\n搜索历史表\n推荐反馈表");
-        tableText.setTextSize(14);
-        tableText.setGravity(Gravity.CENTER);
+        viewModel = new ViewModelProvider(this).get(FavoriteViewModel.class);
 
-        layout.addView(titleText);
-        layout.addView(successText);
-        layout.addView(tableText);
+        viewModel.getItems().observe(this, items -> {
+            adapter.setItems(items);
+            getSupportActionBar().setTitle("我的收藏 (" + (items == null ? 0 : items.size()) + ")");
+        });
 
-        setContentView(layout);
+        viewModel.getIsBatchMode().observe(this, isBatchMode -> {
+            adapter.setBatchMode(isBatchMode);
+            bottomBar.setVisibility(isBatchMode ? View.VISIBLE : View.GONE);
+        });
+
+        adapter.setOnItemClickListener(item -> {
+            viewModel.markAsRead(item.getId());
+            // TODO: 跳转详情页
+        });
+
+        adapter.setOnItemSelectListener(count -> {
+            viewModel.setSelectedCount(count);
+            tvSelectedCount.setText("已选择 " + count + " 项");
+        });
+
+        btnDelete.setOnClickListener(v -> {
+            List<String> ids = new ArrayList<>(adapter.getSelectedIds());
+            viewModel.deleteSelected(ids);
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_favorite, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_batch) {
+            viewModel.toggleBatchMode();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
