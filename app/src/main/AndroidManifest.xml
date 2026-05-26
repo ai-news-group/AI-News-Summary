@@ -35,6 +35,13 @@
         <!-- 摘要设置页 -->
         <activity android:name=".SummarySettingsActivity" />
 
+        <!-- 个人中心相关页面 -->
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".FavoritesActivity" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".EditProfileActivity" />
+
     </application>
 
 </manifest>
