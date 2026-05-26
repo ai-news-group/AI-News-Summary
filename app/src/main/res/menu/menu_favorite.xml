@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_folder"
+        android:title="收藏夹"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_batch"
         android:title="批量"
         app:showAsAction="always" />

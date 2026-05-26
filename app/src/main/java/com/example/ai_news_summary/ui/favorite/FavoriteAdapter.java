@@ -151,4 +151,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             }
         }
     }
+    public int getPosition(FavoriteItem item) {
+        return items == null ? -1 : items.indexOf(item);
+    }
 }
