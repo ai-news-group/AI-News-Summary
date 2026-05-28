@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.ai_news_summary.adapter.NewsAdapter;
 import com.example.ai_news_summary.core.model.News;
+import com.example.ai_news_summary.data.dao.AppDatabase;
+import com.example.ai_news_summary.core.model.History;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,8 +51,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        rvNewsList = findViewById(R.id.rv_news_list);
+        // ========== 添加历史记录按钮 ==========
+        android.widget.Button btnHistory = findViewById(R.id.btn_history);
+        if (btnHistory != null) {
+            btnHistory.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+                startActivity(intent);
+            });
+        } else {
+            android.util.Log.e("MainActivity", "btn_history not found");
+        }
+        // ===================================
 
+        rvNewsList = findViewById(R.id.rv_news_list);
         rvNewsList.setLayoutManager(new LinearLayoutManager(this));
 
         loadMockData();
@@ -57,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
         newsAdapter = new NewsAdapter(newsList, new NewsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(News news) {
+                // ========== 保存到历史记录 ==========
+                saveToHistory(news);
+                // =================================
+
                 Intent intent = new Intent(MainActivity.this, NewsDetailActivity.class);
                 intent.putExtra("news", news);
                 startActivity(intent);
@@ -80,4 +98,35 @@ public class MainActivity extends AppCompatActivity {
         newsList.add(new News("5G应用场景拓展", "5G技术在各个领域的应用不断深化...", "通信世界", "4月12日"));
         newsList.add(new News("智能家居新趋势", "AI让家居生活更智能更便捷...", "科技前沿", "4月11日"));
     }
+
+    // ========== 添加保存历史记录的方法 ==========
+    private void saveToHistory(News news) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            try {
+                // 检查是否已存在
+                int exists = AppDatabase.getInstance(this).historyDao().isHistoryExists(news.getId());
+                if (exists == 0) {
+                    // 不存在则添加
+                    History history = new History(
+                            news.getId(),
+                            news.getTitle(),
+                            news.getSummary(),
+                            news.getSource(),
+                            getCurrentTimeString(),
+                            System.currentTimeMillis()
+                    );
+                    AppDatabase.getInstance(this).historyDao().insert(history);
+                    android.util.Log.d("MainActivity", "已保存到历史记录: " + news.getTitle());
+                }
+            } catch (Exception e) {
+                android.util.Log.e("MainActivity", "保存历史记录失败: " + e.getMessage());
+            }
+        });
+    }
+
+    private String getCurrentTimeString() {
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MM-dd HH:mm", java.util.Locale.getDefault());
+        return sdf.format(new java.util.Date());
+    }
+    // ==========================================
 }
