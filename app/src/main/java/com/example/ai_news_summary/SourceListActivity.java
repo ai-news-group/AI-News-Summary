@@ -34,18 +34,47 @@ public class SourceListActivity extends AppCompatActivity {
     }
 
     private void loadSources() {
-        sourceList.add(new Source("科技日报", "🔬", 45));
-        sourceList.add(new Source("IT之家", "💻", 38));
-        sourceList.add(new Source("通信世界", "📡", 22));
-        sourceList.add(new Source("科技前沿", "🚀", 31));
-        sourceList.add(new Source("官方公告", "📢", 15));
-        sourceList.add(new Source("人工智能", "🤖", 28));
+        // 修复：使用无参构造函数，然后 setter 方法设置值
+        Source source1 = new Source();
+        source1.setName("科技日报");
+        source1.setNewsCount(45);
+        source1.setIcon(android.R.drawable.ic_menu_info_details);
+        sourceList.add(source1);
+
+        Source source2 = new Source();
+        source2.setName("IT之家");
+        source2.setNewsCount(38);
+        source2.setIcon(android.R.drawable.ic_menu_edit);
+        sourceList.add(source2);
+
+        Source source3 = new Source();
+        source3.setName("通信世界");
+        source3.setNewsCount(22);
+        source3.setIcon(android.R.drawable.ic_menu_view);
+        sourceList.add(source3);
+
+        Source source4 = new Source();
+        source4.setName("科技前沿");
+        source4.setNewsCount(31);
+        source4.setIcon(android.R.drawable.ic_menu_camera);
+        sourceList.add(source4);
+
+        Source source5 = new Source();
+        source5.setName("官方公告");
+        source5.setNewsCount(15);
+        source5.setIcon(android.R.drawable.ic_menu_agenda);
+        sourceList.add(source5);
+
+        Source source6 = new Source();
+        source6.setName("人工智能");
+        source6.setNewsCount(28);
+        source6.setIcon(android.R.drawable.ic_menu_share);
+        sourceList.add(source6);
     }
 
     private void setupAdapter() {
         adapter = new SourceAdapter(sourceList, source -> {
             Toast.makeText(this, "查看" + source.getName() + "的新闻", Toast.LENGTH_SHORT).show();
-            // TODO: 后续创建 SourceNewsActivity 后再取消注释
         });
         rvSourceList.setAdapter(adapter);
     }

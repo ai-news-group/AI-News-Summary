@@ -1,4 +1,4 @@
-package com.example.ai_news_summary.feature.recommend
+package com.example.ai_news_summary.feature.home
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ai_news_summary.NewsDetailActivity
 import com.example.ai_news_summary.core.model.News
-import com.example.ai_news_summary.databinding.ItemRecommendNewsBinding
+import com.example.ai_news_summary.databinding.ItemHomeNewsBinding
 
-class RecommendAdapter : RecyclerView.Adapter<RecommendAdapter.ViewHolder>() {
+class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
     private var newsList = listOf<News>()
 
-    inner class ViewHolder(private val binding: ItemRecommendNewsBinding) :
+    inner class ViewHolder(private val binding: ItemHomeNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(news: News) {
             binding.tvTitle.text = news.title
@@ -28,7 +28,7 @@ class RecommendAdapter : RecyclerView.Adapter<RecommendAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemRecommendNewsBinding.inflate(
+        val binding = ItemHomeNewsBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         return ViewHolder(binding)

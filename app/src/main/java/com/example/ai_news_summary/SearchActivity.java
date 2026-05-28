@@ -43,12 +43,26 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void loadAllNews() {
-        // 加载所有新闻（可以从数据库或网络获取）
-        allNews.add(new News("AI技术最新进展", "人工智能在2026年取得了重大突破...", "科技日报", "今天 10:00"));
-        allNews.add(new News("Android 16发布", "谷歌发布了Android 16...", "IT之家", "昨天 15:30"));
-        allNews.add(new News("新闻摘要系统上线", "AI新闻摘要系统正式上线...", "官方公告", "昨天 09:00"));
-        allNews.add(new News("5G应用场景拓展", "5G技术在各个领域的应用...", "通信世界", "4月12日"));
-        allNews.add(new News("智能家居新趋势", "AI让家居生活更智能...", "科技前沿", "4月11日"));
+        // 修复：使用正确的 News 构造函数 (title, desc, time)
+        News news1 = new News("AI技术最新进展", "人工智能在2026年取得了重大突破...", "今天 10:00");
+        news1.setSource("科技日报");
+        allNews.add(news1);
+
+        News news2 = new News("Android 16发布", "谷歌发布了Android 16...", "昨天 15:30");
+        news2.setSource("IT之家");
+        allNews.add(news2);
+
+        News news3 = new News("新闻摘要系统上线", "AI新闻摘要系统正式上线...", "昨天 09:00");
+        news3.setSource("官方公告");
+        allNews.add(news3);
+
+        News news4 = new News("5G应用场景拓展", "5G技术在各个领域的应用...", "4月12日");
+        news4.setSource("通信世界");
+        allNews.add(news4);
+
+        News news5 = new News("智能家居新趋势", "AI让家居生活更智能...", "4月11日");
+        news5.setSource("科技前沿");
+        allNews.add(news5);
     }
 
     private void setupRecyclerView() {
@@ -85,8 +99,9 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         for (News news : allNews) {
-            if (news.getTitle().toLowerCase().contains(keyword) ||
-                    news.getSummary().toLowerCase().contains(keyword)) {
+            String title = news.getTitle() != null ? news.getTitle().toLowerCase() : "";
+            String summary = news.getSummary() != null ? news.getSummary().toLowerCase() : "";
+            if (title.contains(keyword) || summary.contains(keyword)) {
                 searchResults.add(news);
             }
         }

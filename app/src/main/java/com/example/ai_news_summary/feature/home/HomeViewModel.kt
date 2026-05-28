@@ -1,4 +1,4 @@
-package com.example.ai_news_summary.feature.recommend
+package com.example.ai_news_summary.feature.home
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import com.example.ai_news_summary.core.database.AppDatabase
 import com.example.ai_news_summary.core.model.News
 
-class RecommendViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val db = AppDatabase.getInstance(application)
     private val newsDao = db.newsDao()
 
