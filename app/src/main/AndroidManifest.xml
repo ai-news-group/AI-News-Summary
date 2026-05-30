@@ -35,6 +35,11 @@
         <!-- 摘要设置页 -->
         <activity android:name=".SummarySettingsActivity" />
 
+        <!-- 历史设置页 -->
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".HistoryDetailActivity" />
+        <activity android:name=".HistoryStatsActivity" />
+
     </application>
 
 </manifest>
