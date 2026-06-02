@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 public class HistoryActivity extends AppCompatActivity {
 
     private RecyclerView rvHistoryList;
-    private TextView tvHistoryCount, tvClearAll, tvEditMode, tvSelectedCount, tvViewStats;  // ← 添加 tvViewStats
+    private TextView tvHistoryCount, tvClearAll, tvEditMode, tvSelectedCount, tvViewStats, tvSearch, tvGroupView;
     private LinearLayout llEmpty, llDeleteBar;
     private CheckBox cbSelectAll;
     private Button btnDeleteSelected;
@@ -51,7 +51,9 @@ public class HistoryActivity extends AppCompatActivity {
         llDeleteBar = findViewById(R.id.ll_delete_bar);
         cbSelectAll = findViewById(R.id.cb_select_all);
         btnDeleteSelected = findViewById(R.id.btn_delete_selected);
-        tvViewStats = findViewById(R.id.tv_view_stats);  // ← 添加这行
+        tvViewStats = findViewById(R.id.tv_view_stats);
+        tvSearch = findViewById(R.id.tv_search);           // 添加
+        tvGroupView = findViewById(R.id.tv_group_view);    // 添加
     }
 
     private void setupToolbar() {
@@ -67,10 +69,7 @@ public class HistoryActivity extends AppCompatActivity {
         adapter = new HistoryAdapter(null, new HistoryAdapter.OnHistoryClickListener() {
             @Override
             public void onHistoryClick(History history) {
-                // 添加调试日志
                 Toast.makeText(HistoryActivity.this, "点击: " + history.getTitle() + ", ID: " + history.getId(), Toast.LENGTH_LONG).show();
-
-                // 跳转到历史详情页
                 Intent intent = new Intent(HistoryActivity.this, HistoryDetailActivity.class);
                 intent.putExtra("history_id", history.getId());
                 startActivity(intent);
@@ -129,9 +128,20 @@ public class HistoryActivity extends AppCompatActivity {
 
         btnDeleteSelected.setOnClickListener(v -> deleteSelectedHistories());
 
-        // ← 添加统计入口点击事件
         tvViewStats.setOnClickListener(v -> {
             Intent intent = new Intent(HistoryActivity.this, HistoryStatsActivity.class);
+            startActivity(intent);
+        });
+
+        // 搜索按钮
+        tvSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(HistoryActivity.this, SearchActivity.class);
+            startActivity(intent);
+        });
+
+        // 日历/分组按钮
+        tvGroupView.setOnClickListener(v -> {
+            Intent intent = new Intent(HistoryActivity.this, HistoryGroupActivity.class);
             startActivity(intent);
         });
     }
