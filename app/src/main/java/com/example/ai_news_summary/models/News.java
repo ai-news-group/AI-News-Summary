@@ -1,6 +1,8 @@
 package com.example.ai_news_summary.models;
 
-public class News {
+import java.io.Serializable;  // 添加这行导入
+
+public class News implements Serializable {  // 添加 implements Serializable
     private int id;
     private String title;
     private String description;
@@ -9,6 +11,7 @@ public class News {
     private String author;
     private String date;
     private String category;
+    private boolean isFavorite;
 
     public News(int id, String title, String description, String content,
                 String imageUrl, String author, String date, String category) {
@@ -20,6 +23,7 @@ public class News {
         this.author = author;
         this.date = date;
         this.category = category;
+        this.isFavorite = false;
     }
 
     // Getters
@@ -31,6 +35,7 @@ public class News {
     public String getAuthor() { return author; }
     public String getDate() { return date; }
     public String getCategory() { return category; }
+    public boolean isFavorite() { return isFavorite; }
 
     // Setters
     public void setId(int id) { this.id = id; }
@@ -41,4 +46,5 @@ public class News {
     public void setAuthor(String author) { this.author = author; }
     public void setDate(String date) { this.date = date; }
     public void setCategory(String category) { this.category = category; }
+    public void setFavorite(boolean favorite) { isFavorite = favorite; }
 }

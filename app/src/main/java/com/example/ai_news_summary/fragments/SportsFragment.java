@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.ai_news_summary.R;
-import com.example.ai_news_summary.adapters.NewsAdapter;
+import com.example.ai_news_summary.adapter.NewsAdapter;
 import com.example.ai_news_summary.models.News;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,20 @@ public class SportsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new NewsAdapter(new ArrayList<>());
+        adapter = new NewsAdapter(new ArrayList<>(), new NewsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(News news) {
+                Toast.makeText(getContext(), "点击: " + news.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFavoriteClick(News news, int position) {
+                news.setFavorite(!news.isFavorite());
+                adapter.notifyItemChanged(position);
+                String msg = news.isFavorite() ? "已收藏" : "已取消收藏";
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         loadSportsNews();

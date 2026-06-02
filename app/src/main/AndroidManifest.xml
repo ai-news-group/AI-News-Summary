@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/apk/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,8 +14,9 @@
         android:theme="@style/Theme.AINewsSummary"
         android:usesCleartextTraffic="true">
 
+        <!-- 根目录的 MainActivity（你的界面）作为启动页 -->
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +24,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.NewsDetailActivity" />
+        <!-- develop 分支的 MainActivity（TabLayout 版本） -->
+        <activity android:name=".activities.MainActivity" />
+
+        <!-- 其他 Activity -->
+        <activity android:name=".NewsDetailActivity" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".SourceListActivity" />
+        <activity android:name=".SummarySettingsActivity" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".HistoryDetailActivity" />
+        <activity android:name=".HistoryStatsActivity" />
 
     </application>
 
