@@ -4,10 +4,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.example.ai_news_summary.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="AI-News-Summary"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -15,7 +13,6 @@
         android:theme="@style/Theme.AINewsSummary"
         android:usesCleartextTraffic="true">
 
-        <!-- MainActivity 现在在 activities 包中 -->
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">
