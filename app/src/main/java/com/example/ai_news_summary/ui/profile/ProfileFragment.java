@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.ai_news_summary.EditProfileActivity;
 import com.example.ai_news_summary.FavoritesActivity;
-import com.example.ai_news_summary.HistoryActivity;
 import com.example.ai_news_summary.R;
 import com.example.ai_news_summary.SettingsActivity;
 
