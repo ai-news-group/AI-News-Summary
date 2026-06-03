@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ai_news_summary.core.model.News
 import com.example.ai_news_summary.databinding.FragmentHomeBinding
+import com.example.ai_news_summary.models.News  // 改用 models.News
 
 class HomeFragment : Fragment() {
     private var _b: FragmentHomeBinding? = null
@@ -24,13 +24,12 @@ class HomeFragment : Fragment() {
         b.recyclerView.layoutManager = LinearLayoutManager(context)
         b.recyclerView.adapter = adapter
 
+        // 使用 models.News 创建数据
         val list = listOf(
-            News("首页新闻1", "这是首页新闻描述1，点击可以查看详细内容", "今天 10:00"),
-            News("首页新闻2", "这是首页新闻描述2，点击可以查看详细内容", "昨天 15:30"),
-            News("首页新闻3", "这是首页新闻描述3，点击可以查看详细内容", "4月12日"),
-            News("首页新闻4", "这是首页新闻描述4，点击可以查看详细内容", "4月11日")
+            News(1, "首页新闻1", "这是首页新闻描述1", "详细内容", "", "科技日报", "今天 10:00", "科技"),
+            News(2, "首页新闻2", "这是首页新闻描述2", "详细内容", "", "IT之家", "昨天 15:30", "科技"),
+            News(3, "首页新闻3", "这是首页新闻描述3", "详细内容", "", "通信世界", "4月12日", "科技")
         )
-        list.forEach { it.source = "首页推荐" }
         adapter.submitList(list)
     }
 

@@ -2,76 +2,48 @@ package com.example.ai_news_summary.core.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.Ignore;
+import java.io.Serializable;
 
 @Entity(tableName = "sources")
-public class Source {
+public class Source implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String name;
     private String url;
     private String category;
     private boolean isEnabled;
-    private int newsCount;      // 添加新闻数量字段
-    private int icon;           // 添加图标字段
+    private int newsCount;
+    private int icon;
 
+    // Room 使用的默认构造函数
     public Source() {
     }
 
-    // Getter 和 Setter
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    // 添加 @Ignore 注解，让 Room 忽略这个构造函数
+    @Ignore
+    public Source(String name, String url, String category) {
         this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
         this.url = url;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
         this.category = category;
+        this.isEnabled = true;
     }
 
-    public boolean isEnabled() {
-        return isEnabled;
-    }
+    // Getters
+    public long getId() { return id; }
+    public String getName() { return name; }
+    public String getUrl() { return url; }
+    public String getCategory() { return category; }
+    public boolean isEnabled() { return isEnabled; }
+    public int getNewsCount() { return newsCount; }
+    public int getIcon() { return icon; }
 
-    public void setEnabled(boolean enabled) {
-        isEnabled = enabled;
-    }
-
-    // 添加缺失的方法
-    public int getNewsCount() {
-        return newsCount;
-    }
-
-    public void setNewsCount(int newsCount) {
-        this.newsCount = newsCount;
-    }
-
-    public int getIcon() {
-        return icon;
-    }
-
-    public void setIcon(int icon) {
-        this.icon = icon;
-    }
+    // Setters
+    public void setId(long id) { this.id = id; }
+    public void setName(String name) { this.name = name; }
+    public void setUrl(String url) { this.url = url; }
+    public void setCategory(String category) { this.category = category; }
+    public void setEnabled(boolean enabled) { isEnabled = enabled; }
+    public void setNewsCount(int newsCount) { this.newsCount = newsCount; }
+    public void setIcon(int icon) { this.icon = icon; }
 }

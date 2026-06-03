@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ai_news_summary.core.model.News
 import com.example.ai_news_summary.databinding.FragmentMineBinding
+import com.example.ai_news_summary.models.News
 
 class MineFragment : Fragment() {
     private var _b: FragmentMineBinding? = null
@@ -25,12 +25,9 @@ class MineFragment : Fragment() {
         b.recyclerView.adapter = adapter
 
         val list = listOf(
-            News("我的收藏1", "这是你收藏的新闻1", "2026-05-20"),
-            News("我的收藏2", "这是你收藏的新闻2", "2026-05-19"),
-            News("浏览历史1", "你浏览过的新闻1", "2026-05-18"),
-            News("浏览历史2", "你浏览过的新闻2", "2026-05-17")
+            News(1, "我的收藏1", "收藏的新闻描述1", "详细内容", "", "科技日报", "今天 10:00", "收藏"),
+            News(2, "我的收藏2", "收藏的新闻描述2", "详细内容", "", "IT之家", "昨天 15:30", "收藏")
         )
-        list.forEach { it.source = "我的" }
         adapter.submitList(list)
     }
 

@@ -1,7 +1,7 @@
 package com.example.ai_news_summary;
 
 import android.app.Application;
-import com.example.ai_news_summary.core.database.AppDatabase;
+import com.example.ai_news_summary.data.dao.AppDatabase;
 
 public class MyApplication extends Application {
     private static MyApplication instance;

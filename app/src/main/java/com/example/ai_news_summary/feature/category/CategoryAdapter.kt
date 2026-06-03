@@ -11,7 +11,7 @@ import com.example.ai_news_summary.databinding.ItemCategoryNewsBinding
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     private var newsList = listOf<News>()
 
-    inner class ViewHolder(private val binding: ItemCategoryNewsBinding) :
+    class ViewHolder(private val binding: ItemCategoryNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(news: News) {
             binding.tvTitle.text = news.title
@@ -21,7 +21,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
             binding.root.setOnClickListener {
                 val context = binding.root.context
                 val intent = Intent(context, NewsDetailActivity::class.java)
-                intent.putExtra("news", news as java.io.Serializable)
+                intent.putExtra("news", news)
                 context.startActivity(intent)
             }
         }

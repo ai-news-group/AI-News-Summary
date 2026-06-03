@@ -5,23 +5,23 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ai_news_summary.NewsDetailActivity
-import com.example.ai_news_summary.core.model.News
 import com.example.ai_news_summary.databinding.ItemMineNewsBinding
+import com.example.ai_news_summary.models.News
 
 class MineAdapter : RecyclerView.Adapter<MineAdapter.ViewHolder>() {
     private var newsList = listOf<News>()
 
-    inner class ViewHolder(private val binding: ItemMineNewsBinding) :
+    class ViewHolder(private val binding: ItemMineNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(news: News) {
             binding.tvTitle.text = news.title
-            binding.tvDesc.text = news.desc
-            binding.tvTime.text = news.time
+            binding.tvDesc.text = news.description
+            binding.tvTime.text = news.date
 
             binding.root.setOnClickListener {
                 val context = binding.root.context
                 val intent = Intent(context, NewsDetailActivity::class.java)
-                intent.putExtra("news", news as java.io.Serializable)
+                intent.putExtra("news", news)
                 context.startActivity(intent)
             }
         }

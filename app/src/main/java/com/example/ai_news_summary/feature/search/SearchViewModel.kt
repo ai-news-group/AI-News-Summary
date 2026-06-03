@@ -3,17 +3,28 @@ package com.example.ai_news_summary.feature.search
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.example.ai_news_summary.core.database.AppDatabase
+import androidx.lifecycle.MutableLiveData
 import com.example.ai_news_summary.core.model.News
+import com.example.ai_news_summary.data.dao.AppDatabase
 
 class SearchViewModel(application: Application) : AndroidViewModel(application) {
     private val db = AppDatabase.getInstance(application)
     private val newsDao = db.newsDao()
 
-    val recommendNews: LiveData<List<News>> = newsDao.getAllNews()
+    private val _searchResults = MutableLiveData<List<News>>()
+    val searchResults: LiveData<List<News>> = _searchResults
 
-    fun saveFeedback(newsId: Int, type: String) {
-        // 先空实现，避免构造参数错误
-        // 后续根据 RecommendFeedback 的真实构造再修改
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    fun searchNews(keyword: String) {
+        _isLoading.value = true
+        // 搜索逻辑 - 暂时使用空实现
+        _searchResults.value = emptyList()
+        _isLoading.value = false
+    }
+
+    fun clearResults() {
+        _searchResults.value = emptyList()
     }
 }

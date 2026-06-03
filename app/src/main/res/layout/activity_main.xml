@@ -1,61 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:titleTextColor="@android:color/white" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="搜索新闻..."
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:inputType="text" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Fragment 容器 - 默认可见 -->
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:visibility="visible" />
+
+    <!-- 新闻列表 - 默认隐藏 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_news_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_history"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:text="查看历史记录" />
+
+    <Button
+        android:id="@+id/btn_switch_to_develop"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="切换到分类浏览模式" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:background="@android:drawable/bottom_bar">
+        android:gravity="center">
 
         <Button
             android:id="@+id/btn_home"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="首页"
-            android:background="?attr/selectableItemBackground" />
+            android:text="首页" />
 
         <Button
             android:id="@+id/btn_recommend"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="推荐"
-            android:background="?attr/selectableItemBackground" />
+            android:text="推荐" />
 
         <Button
             android:id="@+id/btn_category"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="分类"
-            android:background="?attr/selectableItemBackground" />
+            android:text="分类" />
 
         <Button
             android:id="@+id/btn_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="搜索"
-            android:background="?attr/selectableItemBackground" />
+            android:text="搜索" />
 
         <Button
             android:id="@+id/btn_mine"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="我的"
-            android:background="?attr/selectableItemBackground" />
+            android:text="我的" />
 
     </LinearLayout>
 
