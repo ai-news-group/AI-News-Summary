@@ -2,19 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/apk/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
-        android:name=".MyApplication"
+        android:name="com.example.ai_news_summary.MyApplication"
         android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="AI-News-Summary"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AINewsSummary"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/Theme.AINewsSummary">
 
-        <!-- 根目录的 MainActivity（你的界面）作为启动页 -->
+        <!-- 主页 -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -24,22 +23,24 @@
             </intent-filter>
         </activity>
 
-        <!-- develop 分支的 MainActivity（TabLayout 版本） -->
-        <activity android:name=".activities.MainActivity" />
-
-        <!-- 其他 Activity -->
+        <!-- 新闻详情页 -->
         <activity android:name=".NewsDetailActivity" />
+
+        <!-- 搜索结果页 -->
         <activity android:name=".SearchActivity" />
+
+        <!-- 新闻来源页 -->
         <activity android:name=".SourceListActivity" />
+
+        <!-- 摘要设置页 -->
         <activity android:name=".SummarySettingsActivity" />
 
-
-        <!-- 历史模块 -->
-
+        <!-- 个人中心相关页面 -->
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".FavoritesActivity" />
         <activity android:name=".HistoryActivity" />
-        <activity android:name=".HistoryDetailActivity" />
-        <activity android:name=".HistoryStatsActivity" />
-        <activity android:name=".HistoryGroupActivity" />  <!-- ← 添加这一行 -->
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".EditProfileActivity" />
 
     </application>
 
