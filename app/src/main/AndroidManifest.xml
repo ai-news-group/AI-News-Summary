@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name="com.example.ai_news_summary.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,15 +10,39 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AINewsSummary">
+        android:theme="@style/Theme.AINewsSummary"
+        tools:targetApi="31">
+
+        <!-- 启动页（设置为启动Activity） -->
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 登录页 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"/>
+
+        <!-- 注册页 -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"/>
+
+        <!-- 忘记密码页 -->
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false"/>
+
+        <!-- 主页 -->
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false"/>
+
     </application>
 
 </manifest>
