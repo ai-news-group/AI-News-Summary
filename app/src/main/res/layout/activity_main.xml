@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="24dp"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <!-- 给CardView设置最大宽度，解决"too wide"警告 -->
     <androidx.cardview.widget.CardView

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.AINewsSummary"
         tools:targetApi="31">
 
-        <!-- 启动页（设置为启动Activity） -->
+        <!-- 启动页 -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -23,25 +23,16 @@
             </intent-filter>
         </activity>
 
-        <!-- 登录页 -->
-        <activity
+        <!-- 组长的新闻列表主页（暂时注释，等拉取到代码后取消） -->
+        <!-- <activity
             android:name=".MainActivity"
-            android:exported="false"/>
+            android:exported="false"/> -->
 
-        <!-- 注册页 -->
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false"/>
-
-        <!-- 忘记密码页 -->
-        <activity
-            android:name=".ForgotPasswordActivity"
-            android:exported="false"/>
-
-        <!-- 主页 -->
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false"/>
+        <!-- 登录相关页面 -->
+        <activity android:name=".LoginActivity" android:exported="false"/>
+        <activity android:name=".RegisterActivity" android:exported="false"/>
+        <activity android:name=".ForgotPasswordActivity" android:exported="false"/>
+        <activity android:name=".HomeActivity" android:exported="false"/>
 
     </application>
 
