@@ -53,23 +53,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 历史记录按钮
-        Button btnHistory = findViewById(R.id.btn_history);
-        if (btnHistory != null) {
-            btnHistory.setOnClickListener(v -> {
-                Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-                startActivity(intent);
-            });
-        }
-
-        // 切换到 develop 分支界面的按钮
-        Button btnSwitchToDevelop = findViewById(R.id.btn_switch_to_develop);
-        if (btnSwitchToDevelop != null) {
-            btnSwitchToDevelop.setOnClickListener(v -> {
-                Intent intent = new Intent(MainActivity.this, com.example.ai_news_summary.activities.MainActivity.class);
-                startActivity(intent);
-            });
-        }
+        // 历史记录按钮 - 暂时注释（HistoryActivity 不存在）
+        // Button btnHistory = findViewById(R.id.btn_history);
+        // if (btnHistory != null) {
+        //     btnHistory.setOnClickListener(v -> {
+        //         Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+        //         startActivity(intent);
+        //     });
+        // }
 
         // 搜索框
         EditText etSearch = findViewById(R.id.et_search);

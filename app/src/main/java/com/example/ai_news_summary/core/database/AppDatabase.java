@@ -18,7 +18,7 @@ import com.example.ai_news_summary.core.model.News;
                 SearchHistory.class,
                 RecommendFeedback.class
         },
-        version = 1,
+        version = 5,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
