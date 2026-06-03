@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.ai_news_summary.EditProfileActivity;
-import com.example.ai_news_summary.FavoritesActivity;
 import com.example.ai_news_summary.R;
 import com.example.ai_news_summary.SettingsActivity;
 
@@ -53,18 +52,6 @@ public class ProfileFragment extends Fragment {
         // 点击昵称进入编辑资料
         view.findViewById(R.id.tv_username).setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), EditProfileActivity.class);
-            startActivity(intent);
-        });
-
-        // 我的收藏
-        view.findViewById(R.id.btn_favorites).setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), FavoritesActivity.class);
-            startActivity(intent);
-        });
-
-        // 浏览历史
-        view.findViewById(R.id.btn_history).setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), HistoryActivity.class);
             startActivity(intent);
         });
 

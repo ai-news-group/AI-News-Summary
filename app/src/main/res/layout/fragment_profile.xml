@@ -73,36 +73,6 @@
             android:orientation="vertical"
             android:background="@drawable/card_bg">
 
-            <!-- 我的收藏 -->
-            <TextView
-                android:id="@+id/btn_favorites"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="我的收藏"
-                android:textSize="16sp"
-                android:background="?attr/selectableItemBackground" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#e0e0e0" />
-
-            <!-- 浏览历史 -->
-            <TextView
-                android:id="@+id/btn_history"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="浏览历史"
-                android:textSize="16sp"
-                android:background="?attr/selectableItemBackground" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#e0e0e0" />
-
             <!-- 设置 -->
             <TextView
                 android:id="@+id/btn_settings"
