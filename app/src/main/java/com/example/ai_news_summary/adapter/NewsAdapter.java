@@ -8,10 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.ai_news_summary.R;
-import com.example.ai_news_summary.core.model.News;  // ← 注意这个 import
+import com.example.ai_news_summary.models.News;
 import java.util.List;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 
     private List<News> newsList;
     private OnItemClickListener listener;
@@ -28,28 +28,41 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.items_news, parent, false);
-        return new ViewHolder(view);
+                .inflate(R.layout.item_news, parent, false);
+        return new NewsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         News news = newsList.get(position);
-        holder.tvTitle.setText(news.getTitle());
-        holder.tvSummary.setText(news.getSummary());
-        holder.tvSource.setText(news.getSource());
-        holder.tvTime.setText(news.getTime());
 
+        holder.tvTitle.setText(news.getTitle());
+        holder.tvSummary.setText(news.getDescription());
+        holder.tvSource.setText(news.getAuthor());
+        holder.tvTime.setText(news.getDate());
+
+        // 设置收藏图标
         if (news.isFavorite()) {
-            holder.ivFavorite.setImageResource(R.drawable.ic_favorite);
+            holder.ivFavorite.setImageResource(android.R.drawable.btn_star_big_on);
         } else {
-            holder.ivFavorite.setImageResource(R.drawable.ic_favorite_border);
+            holder.ivFavorite.setImageResource(android.R.drawable.btn_star_big_off);
         }
 
-        holder.itemView.setOnClickListener(v -> listener.onItemClick(news));
-        holder.ivFavorite.setOnClickListener(v -> listener.onFavoriteClick(news, position));
+        // 点击收藏图标
+        holder.ivFavorite.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onFavoriteClick(news, position);
+            }
+        });
+
+        // 点击整个条目
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(news);
+            }
+        });
     }
 
     @Override
@@ -57,11 +70,21 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         return newsList.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvSummary, tvSource, tvTime;
+    // 添加 updateList 方法
+    public void updateList(List<News> newList) {
+        this.newsList.clear();
+        this.newsList.addAll(newList);
+        notifyDataSetChanged();
+    }
+
+    static class NewsViewHolder extends RecyclerView.ViewHolder {
+        TextView tvTitle;
+        TextView tvSummary;
+        TextView tvSource;
+        TextView tvTime;
         ImageView ivFavorite;
 
-        ViewHolder(View itemView) {
+        NewsViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvSummary = itemView.findViewById(R.id.tv_summary);
