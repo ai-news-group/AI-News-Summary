@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     android:orientation="vertical"
-    android:background="#F5F5F5">
+    tools:context=".MainActivity">
 
     <!-- 标题栏 -->
     <androidx.appcompat.widget.Toolbar
@@ -15,21 +18,7 @@
         app:title="AI新闻摘要"
         app:titleTextColor="@android:color/white" />
 
-
-    <!-- 历史记录按钮 -->
-    <Button
-        android:id="@+id/btn_history"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_margin="16dp"
-        android:text="查看历史记录"
-        android:background="@drawable/bg_button_solid"
-        android:textColor="#FFFFFF" />
-
-    <!-- 导航图标行 -->
-
     <!-- 功能按钮行 -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +33,10 @@
             android:layout_weight="1"
             android:src="@drawable/ic_search"
             android:padding="12dp"
-            android:background="?attr/selectableItemBackgroundBorderless" />
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="搜索"/>
 
         <ImageView
             android:id="@+id/iv_source"
@@ -53,7 +45,10 @@
             android:layout_weight="1"
             android:src="@drawable/ic_source"
             android:padding="12dp"
-            android:background="?attr/selectableItemBackgroundBorderless" />
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="新闻源"/>
 
         <ImageView
             android:id="@+id/iv_settings"
@@ -62,7 +57,10 @@
             android:layout_weight="1"
             android:src="@drawable/ic_settings"
             android:padding="12dp"
-            android:background="?attr/selectableItemBackgroundBorderless" />
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="设置"/>
 
     </LinearLayout>
 
@@ -104,7 +102,8 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="8dp" />
+            android:drawablePadding="8dp"
+            android:autofillHints="search"/>
 
     </androidx.cardview.widget.CardView>
 
