@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ivSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SummarySettingsActivity.class);
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             startActivity(intent);
         });
 
